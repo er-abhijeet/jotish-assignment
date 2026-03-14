@@ -95,7 +95,7 @@ const Visualization = () => {
           } else {
             newDict[city] = [0, 0]; 
           }
-          await new Promise((resolve) => setTimeout(resolve, 1000));
+          await new Promise((resolve) => setTimeout(resolve, 300));
           
         } catch (error) {
           console.error(`Geocoding failed for ${city}:`, error);
@@ -199,6 +199,7 @@ const Visualization = () => {
                   <text x={xPos + BAR_WIDTH / 2} y={yPos - 8} textAnchor="middle" fill="#f4f4f5" fontSize="12" fontWeight="bold">
                     ${Math.round(dataPoint.avgSalary / 1000)}k
                   </text>
+                  
                 </g>
               );
             })}
