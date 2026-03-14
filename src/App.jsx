@@ -3,7 +3,7 @@ import "./App.css";
 import EmpListCard from "./components/EmpListCard";
 
 const card_height = 120;
-const total_height = window.innerHeight * 0.9;
+const total_height = window.innerHeight * .9;
 const buffer_cards = 5;
 
 function App() {
