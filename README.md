@@ -2,7 +2,7 @@
 
 This repository contains a full-stack dashboard implementation featuring custom DOM virtualization, raw SVG analytics, hardware API integration, and client-side routing. 
 
-## 🚨 INTENTIONAL VULNERABILITY (Requirement)
+##  INTENTIONAL VULNERABILITY (Requirement)
 **Type:** Stale Closure & Orphaned Interval Memory Leak
 **Location:** `Visualization.jsx` (Inside the auto-refresh `useEffect`)
 
