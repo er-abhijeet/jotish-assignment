@@ -1,0 +1,90 @@
+
+.emp-card-wrapper {
+  height: 120px; 
+  width: 100%;
+  box-sizing: border-box;
+  padding-bottom: 16px;
+  overflow: hidden;
+}
+
+.emp-card {
+  height: 104px;
+  background-color: #18181b; 
+  border: 1px solid #27272a;
+  border-radius: 8px;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+  font-family: system-ui, -apple-system, sans-serif;
+  transition: border-color 0.2s ease;
+}
+
+.emp-card:hover {
+  border-color: #3f3f46;
+}
+
+.emp-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.emp-name {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #f4f4f5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.emp-badge {
+  font-size: 12px;
+  font-weight: 500;
+  color: #a1a1aa;
+  background-color: #27272a;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.emp-card-body {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #a1a1aa;
+}
+
+.emp-role {
+  font-weight: 500;
+  color: #d4d4d8;
+}
+
+.emp-dot {
+  margin: 0 8px;
+  color: #52525b;
+}
+
+.emp-location {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.emp-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 13px;
+  color: #71717a;
+}
+
+.emp-salary {
+  font-size: 15px;
+  font-weight: 600;
+  color: #10b981;
+}
