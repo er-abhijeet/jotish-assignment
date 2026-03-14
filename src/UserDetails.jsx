@@ -239,6 +239,7 @@ const UserDetails = () => {
               className="btn-secondary"
               onClick={() => {
                 setMergedImage(null);
+                setPreset(false);
                 localStorage.removeItem(`user_signature_${id}`);
               }}
             >

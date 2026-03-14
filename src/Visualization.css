@@ -1,0 +1,67 @@
+.viz-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  background-color: #09090b;
+  min-height: 100vh;
+  color: #f4f4f5;
+  font-family: system-ui, -apple-system, sans-serif;
+  gap: 24px;
+}
+
+.viz-title {
+  margin: 0;
+  color: #10b981;
+}
+
+.viz-card {
+  background-color: #18181b;
+  border: 1px solid #27272a;
+  border-radius: 8px;
+  padding: 24px;
+  width: 100%;
+  max-width: 800px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+.viz-card h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #e4e4e7;
+  font-size: 18px;
+}
+
+.svg-wrapper {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto; 
+}
+
+.custom-svg {
+  background-color: #18181b;
+  border-bottom: 1px solid #3f3f46;
+}
+
+.svg-group:hover rect {
+  fill: #34d399;
+  transition: fill 0.2s ease;
+  cursor: pointer;
+}
+
+.map-wrapper {
+  height: 400px;
+  width: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #3f3f46;
+}
+
+
+.leaflet-popup-content-wrapper {
+  background-color: #27272a;
+  color: #f4f4f5;
+}
+.leaflet-popup-tip {
+  background-color: #27272a;
+}
