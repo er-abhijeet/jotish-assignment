@@ -34,21 +34,19 @@ const Visualization = () => {
 
   const navigate=useNavigate();
 
-  // THE INTENTIONAL VULNERABILITY: Stale Closure & Memory Leak
-  // We need to remove the two commented lines to fix the bug
+  // Auto-refresh polling (fixed: no stale closure, interval cleaned up on unmount)
   useEffect(() => {
-    let timerId=1;
+    let timerId;
     if (autoRefresh) {
       timerId = setInterval(() => {
         console.log(`Polling API... Current refresh count is: ${refreshCount}`);
-        setRefreshCount(refreshCount+ 1); 
-
+        setRefreshCount((c) => c + 1);
       }, 300);
     }
-    // return () => {clearInterval(timerId);}
-  }, [autoRefresh,
-    // refreshCount
-  ]); 
+    return () => {
+      if (timerId) clearInterval(timerId);
+    };
+  }, [autoRefresh]); 
 
   useEffect(() => {
     const fetchData = async () => {

@@ -2,16 +2,18 @@
 
 This repository contains a full-stack dashboard implementation featuring custom DOM virtualization, raw SVG analytics, hardware API integration, and client-side routing. 
 
-##  INTENTIONAL VULNERABILITY (Requirement)
-**Type:** Stale Closure & Orphaned Interval Memory Leak
+##  Bug Fix: Auto-Refresh Stale Closure & Memory Leak
+**Type:** Bug Fix
 **Location:** `Visualization.jsx` (Inside the auto-refresh `useEffect`)
 
-**Technical Explanation:**
-I added a "Live Auto-Refresh" feature to poll the API. Inside the `useEffect`, there is a `setInterval` that increments a `refreshCount` state. 
+**What was wrong:**
+The "Live Auto-Refresh" feature polled the API every 300ms via `setInterval`, incrementing `refreshCount`. Two bugs existed:
+1. **Stale Closure:** `refreshCount` was read directly inside the interval callback but omitted from the dependency array, so the callback was trapped in the initial render snapshot (`refreshCount === 0`). Every tick ran `setRefreshCount(0 + 1)`, leaving the counter permanently stuck at 1.
+2. **Memory Leak:** No cleanup function cleared the interval when the component unmounted, so zombie intervals kept running in the background after navigation away — spawning parallel timers on repeated toggles and risking an OOM browser crash.
 
-I deliberately introduced two engine-level bugs here:
-1. **Stale Closure:** The dependency array only tracks `[autoRefresh]`, leaving `refreshCount` out. Because of JS lexical scoping, the arrow function inside the interval is trapped in the initial render snapshot. It captures `refreshCount` at `0`. Every interval tick just runs `setRefreshCount(0 + 1)`. The state gets permanently stuck at 1.
-2. **Memory Leak (Garbage Collection Evasion):** I intentionally omitted the cleanup function (`return () => clearInterval(timerId)`). When you navigate away from the visualization page, React destroys the DOM nodes, but the `setInterval` keeps running in the V8 engine background. If you toggle the checkbox multiple times or change routes, it spawns parallel zombie intervals. In production, this memory bloat eventually causes an Out-of-Memory (OOM) browser crash.
+**Fix applied:**
+- Switched to the functional state updater `setRefreshCount((c) => c + 1)` so the callback no longer captures a stale `refreshCount` value and no longer needs it in the dependency array.
+- Added a cleanup `return () => { if (timerId) clearInterval(timerId); }` so the interval is cleared on unmount, preventing zombie timers and memory bloat.
 
 ---
 
